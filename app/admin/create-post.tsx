@@ -14,7 +14,6 @@ import { router } from 'expo-router';
 import { lightTheme } from '@/lib/theme';
 import { supabase, postService } from '@/lib/supabase';
 import { ArrowLeft, Save, Image as ImageIcon } from 'lucide-react-native';
-import * as DocumentPicker from 'expo-document-picker';
 
 interface Category {
   id: string;
@@ -33,9 +32,6 @@ export default function CreatePostScreen() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [loading, setLoading] = useState(false);
-  const [pdfs, setPdfs] = useState<{ name: string; url: string }[]>([]);
-  const [pdfUploading, setPdfUploading] = useState(false);
-  const [pdfLink, setPdfLink] = useState('');
 
   useState(() => {
     fetchCategories();
@@ -62,34 +58,6 @@ export default function CreatePostScreen() {
       .replace(/(^-|-$)/g, '');
   };
 
-  const handlePickPdf = async () => {
-    try {
-      setPdfUploading(true);
-      const result = await DocumentPicker.getDocumentAsync({ type: 'application/pdf' });
-      if (result.canceled) return;
-      const file = result.assets[0];
-      const fileName = `${Date.now()}_${file.name}`;
-      const { data, error } = await supabase.storage.from('pdfs').upload(fileName, file);
-      if (error) throw error;
-      const { data: publicUrlData } = supabase.storage.from('pdfs').getPublicUrl(fileName);
-      setPdfs(prev => [...prev, { name: file.name, url: publicUrlData.publicUrl }]);
-    } catch (err) {
-      Alert.alert('Error', 'Failed to upload PDF');
-    } finally {
-      setPdfUploading(false);
-    }
-  };
-
-  const handleAddPdfLink = () => {
-    if (!pdfLink.trim()) return;
-    setPdfs(prev => [...prev, { name: pdfLink, url: pdfLink }]);
-    setPdfLink('');
-  };
-
-  const handleRemovePdf = (url: string) => {
-    setPdfs(prev => prev.filter(pdf => pdf.url !== url));
-  };
-
   const handleSave = async () => {
     if (!title || !content || !excerpt) {
       Alert.alert('Error', 'Please fill in all required fields');
@@ -114,7 +82,6 @@ export default function CreatePostScreen() {
         author,
         slug,
         featured,
-        pdfs,
       });
 
       if (error) {
@@ -192,39 +159,6 @@ export default function CreatePostScreen() {
             multiline
             numberOfLines={10}
           />
-        </View>
-
-        {/* PDF Attachments */}
-        <View style={styles.section}>
-          <Text style={styles.label}>Attach PDFs</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
-            <TouchableOpacity style={styles.uploadButton} onPress={handlePickPdf} disabled={pdfUploading}>
-              <Text style={styles.uploadButtonText}>{pdfUploading ? 'Uploading...' : 'Upload PDF'}</Text>
-            </TouchableOpacity>
-            <TextInput
-              style={[styles.input, { flex: 1, marginLeft: 8 }]}
-              value={pdfLink}
-              onChangeText={setPdfLink}
-              placeholder="Paste PDF link..."
-              placeholderTextColor={lightTheme.textSecondary}
-            />
-            <TouchableOpacity style={styles.addLinkButton} onPress={handleAddPdfLink}>
-              <Text style={styles.addLinkButtonText}>Add Link</Text>
-            </TouchableOpacity>
-          </View>
-          {/* List of PDFs */}
-          {pdfs.length > 0 && (
-            <View style={styles.pdfList}>
-              {pdfs.map((pdf, idx) => (
-                <View key={pdf.url} style={styles.pdfItem}>
-                  <Text style={styles.pdfName} numberOfLines={1}>{pdf.name}</Text>
-                  <TouchableOpacity onPress={() => handleRemovePdf(pdf.url)}>
-                    <Text style={styles.removePdf}>Remove</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          )}
         </View>
 
         {/* Image URL */}
@@ -442,12 +376,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
   },
-  pdfList: { marginTop: 8 },
-  pdfItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
-  pdfName: { flex: 1, color: lightTheme.text, fontSize: 14 },
-  removePdf: { color: lightTheme.error, marginLeft: 12, fontSize: 13 },
-  uploadButton: { backgroundColor: lightTheme.primary, padding: 8, borderRadius: 8 },
-  uploadButtonText: { color: '#fff', fontWeight: '600' },
-  addLinkButton: { backgroundColor: lightTheme.secondary, padding: 8, borderRadius: 8, marginLeft: 8 },
-  addLinkButtonText: { color: '#fff', fontWeight: '600' },
 });

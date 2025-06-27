@@ -16,7 +16,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.arushatech.atcapp"
+      "bundleIdentifier": "com.arushatech.atcapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -46,8 +49,9 @@
     "scheme": "atc-app",
     "extra": {
       "eas": {
-        "projectId": "your-project-id-here"
+        "projectId": "04d44f96-50f2-480d-ae8c-7a1c161a4942"
       }
-    }
+    },
+    "owner": "airezra"
   }
 }

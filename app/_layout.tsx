@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -6,27 +6,14 @@ import NotificationService from '@/lib/notifications';
 import * as Notifications from 'expo-notifications';
 import { userService } from '@/lib/supabase';
 import { adminAuth } from '@/lib/supabase';
-import OnboardingService from '@/lib/onboarding';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [showOnboarding, setShowOnboarding] = useState<boolean | null>(null);
-
   useEffect(() => {
-    const checkOnboarding = async () => {
-      const isCompleted = await OnboardingService.isOnboardingCompleted();
-      setShowOnboarding(!isCompleted);
-    };
-    checkOnboarding();
+    SplashScreen.hideAsync();
   }, []);
-
-  useEffect(() => {
-    if (showOnboarding !== null) {
-      SplashScreen.hideAsync();
-    }
-  }, [showOnboarding]);
 
   useEffect(() => {
     // Initialize notifications
@@ -69,30 +56,11 @@ export default function RootLayout() {
     initializeNotifications();
   }, []);
 
-  if (showOnboarding === null) {
-    return null;
-  }
-
   return (
     <>
       <StatusBar style="auto" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        {showOnboarding ? (
-          <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-        ) : (
-          <>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="admin" options={{ headerShown: false }} />
-            <Stack.Screen name="learn" options={{ headerShown: false }} />
-            <Stack.Screen name="post" options={{ headerShown: false }} />
-            <Stack.Screen name="category" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </>
-        )}
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </>
   );

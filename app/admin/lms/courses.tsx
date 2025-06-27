@@ -24,6 +24,8 @@ import {
   X,
   BookOpen
 } from 'lucide-react-native';
+import * as FileSystem from 'expo-file-system';
+import * as DocumentPicker from 'expo-document-picker';
 
 type Course = {
   id: number;
@@ -40,15 +42,22 @@ type Category = {
   name: string;
 };
 
+type CourseCategory = { id: string; name: string; slug: string };
+
+// Type for PDF
+type PdfFile = { name: string; url: string };
+
 export default function CoursesManagement() {
   const [courses, setCourses] = useState<Course[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<CourseCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingCourse, setEditingCourse] = useState<Course | null>(null);
   const [formData, setFormData] = useState({ title: '', description: '', category_id: '' });
+  const [pdfs, setPdfs] = useState<PdfFile[]>([]);
+  const [pdfUploading, setPdfUploading] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -87,7 +96,9 @@ export default function CoursesManagement() {
           title: course.title,
           description: course.description,
           category_id: course.category_id,
-          category_name: course.course_categories?.name || 'Unknown',
+          category_name: Array.isArray(course.course_categories) && course.course_categories.length > 0
+            ? course.course_categories[0].name
+            : 'Unknown',
           created_at: course.created_at,
           module_count: course.modules?.length || 0,
         }));
@@ -103,7 +114,7 @@ export default function CoursesManagement() {
     try {
       const { data, error } = await supabase
         .from('course_categories')
-        .select('id, name')
+        .select('id, name, slug')
         .order('name');
 
       if (error) throw error;
@@ -174,10 +185,10 @@ export default function CoursesManagement() {
     }
   };
 
-  const handleDelete = async (course: Course) => {
+  const handleDelete = async (id: number) => {
     Alert.alert(
       'Delete Course',
-      `Are you sure you want to delete "${course.title}"? This will also delete all associated modules.`,
+      `Are you sure you want to delete this course? This will also delete all associated modules.`,
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -188,7 +199,7 @@ export default function CoursesManagement() {
               const { error } = await supabase
                 .from('courses')
                 .delete()
-                .eq('id', course.id);
+                .eq('id', id);
 
               if (error) throw error;
 
@@ -224,6 +235,33 @@ export default function CoursesManagement() {
     setShowEditModal(false);
     setEditingCourse(null);
     setFormData({ title: '', description: '', category_id: '' });
+  };
+
+  const handlePickPdf = async () => {
+    try {
+      setPdfUploading(true);
+      const result = await DocumentPicker.getDocumentAsync({ type: 'application/pdf' });
+      if (result.canceled) return;
+      const file = result.assets[0];
+      const fileName = `${Date.now()}_${file.name}`;
+
+      // Read file as base64
+      const fileBase64 = await FileSystem.readAsStringAsync(file.uri, { encoding: FileSystem.EncodingType.Base64 });
+      const fileBuffer = Uint8Array.from(atob(fileBase64), c => c.charCodeAt(0));
+
+      // Upload file to Supabase Storage
+      const { data, error } = await supabase.storage.from('pdfs').upload(fileName, fileBuffer, {
+        contentType: 'application/pdf',
+        upsert: false,
+      });
+      if (error) throw error;
+      const { data: publicUrlData } = supabase.storage.from('pdfs').getPublicUrl(fileName);
+      setPdfs(prev => [...prev, { name: file.name, url: publicUrlData.publicUrl }]);
+    } catch (err) {
+      Alert.alert('Error', 'Failed to upload PDF');
+    } finally {
+      setPdfUploading(false);
+    }
   };
 
   if (loading) {
@@ -299,7 +337,7 @@ export default function CoursesManagement() {
                   </TouchableOpacity>
                   <TouchableOpacity 
                     style={styles.actionButton}
-                    onPress={() => handleDelete(course)}
+                    onPress={() => handleDelete(course.id)}
                   >
                     <Trash2 size={16} color="#ef4444" />
                   </TouchableOpacity>

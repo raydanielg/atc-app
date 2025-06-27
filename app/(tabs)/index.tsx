@@ -20,6 +20,7 @@ import { supabase, Post, Category } from '@/lib/supabase';
 import { lightTheme } from '@/lib/theme';
 import { Search, Clock, Eye, Heart, Share2, TrendingUp } from 'lucide-react-native';
 import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 const ATCLogo = require('@/assets/images/ATC.png');
 
 const { width } = Dimensions.get('window');
@@ -240,7 +241,14 @@ export default function NewsScreen() {
       if (result.canceled) return;
       const file = result.assets[0];
       const fileName = `${Date.now()}_${file.name}`;
-      const { data, error } = await supabase.storage.from('pdfs').upload(fileName, file);
+      // Read file as base64
+      const fileBase64 = await FileSystem.readAsStringAsync(file.uri, { encoding: FileSystem.EncodingType.Base64 });
+      const fileBuffer = Uint8Array.from(atob(fileBase64), c => c.charCodeAt(0));
+      // Upload file to Supabase Storage
+      const { data, error } = await supabase.storage.from('pdfs').upload(fileName, fileBuffer, {
+        contentType: 'application/pdf',
+        upsert: false,
+      });
       if (error) throw error;
       const { data: publicUrlData } = supabase.storage.from('pdfs').getPublicUrl(fileName);
       setPdfs(prev => [...prev, { name: file.name, url: publicUrlData.publicUrl }]);

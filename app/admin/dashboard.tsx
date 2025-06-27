@@ -38,6 +38,8 @@ type SessionView = { session_id: string; count: number };
 type DailyView = { day: string; count: number };
 type LikesPerCategory = { key: string; name: string; color: string; likes: number };
 type MostLikedPost = { id: string; title: string; likes: number } | null;
+// Add this type at the top (after imports):
+type CourseCategory = { id: number; name: string; slug: string };
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState('analytics');
@@ -1285,11 +1287,11 @@ export default function AdminPanel() {
   }
 
   function LearnAdminTab() {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<CourseCategory[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
-    const [editCategory, setEditCategory] = useState(null);
+    const [editCategory, setEditCategory] = useState<CourseCategory | null>(null);
     const [name, setName] = useState('');
     const [slug, setSlug] = useState('');
 
@@ -1312,7 +1314,7 @@ export default function AdminPanel() {
       await supabase.from('course_categories').update({ name, slug }).eq('id', editCategory.id);
       setShowEdit(false); setEditCategory(null); setName(''); setSlug(''); fetchCategories();
     };
-    const handleDelete = async (id) => {
+    const handleDelete = async (id: number) => {
       Alert.alert('Delete Category', 'Are you sure?', [
         { text: 'Cancel', style: 'cancel' },
         { text: 'Delete', style: 'destructive', onPress: async () => {

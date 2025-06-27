@@ -17,15 +17,5 @@
   },
   "submit": {
     "production": {}
-  },
-  "expo": {
-    "name": "ATC APP",
-    "slug": "atc-app",
-    "version": "1.0.0",
-    "sdkVersion": "49.0.0",
-    "platforms": ["ios", "android", "web"],
-    "eas": {
-      "projectId": "332788fc-2279-47a5-a3b7-3e1b49964a05"
-    }
   }
 }
