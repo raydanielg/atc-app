@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "ATC APP",
+    "slug": "atc-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/ATC.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/ATC.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.arushatech.atcapp"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/ATC.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.arushatech.atcapp",
+      "permissions": [
+        "NOTIFICATIONS",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/ATC.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/ATC.png",
+          "color": "#ffffff"
+        }
+      ]
+    ],
+    "scheme": "atc-app",
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
+    }
+  }
+}
