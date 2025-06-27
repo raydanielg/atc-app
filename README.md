@@ -15,27 +15,42 @@
 
 ---
 
-## 📱 About the App
+## 📝 Project Description
 
-**ATC APP** is a modern, mobile-friendly application built with [Expo](https://expo.dev/) (a React Native framework) for the Arusha Technical College community. It provides the latest news, educational content, and notifications about important updates, all in a user-friendly interface.
+**ATC APP** is an open-source, mobile-first application designed for the Arusha Technical College community. Built with React Native and Expo, this app delivers news, educational content, notifications, and more in a modern, user-friendly interface. Whether you're a student, educator, or developer, ATC APP is a showcase of how technology can enhance learning and campus life.
+
+**SEO Keywords:** Arusha Technical College app, ATC mobile app, React Native Expo education app, student learning platform, open source college app, Tanzania education technology, mobile news and courses, Supabase authentication, modern UI/UX, campus notifications.
 
 > **Note:** This is **NOT** an official app of Arusha Technical College. It is a student project developed for educational and demonstration purposes only.
 
 ---
 
+## 📱 About the App
+
+**ATC APP** is a modern, mobile-friendly application built with [Expo](https://expo.dev/) (a React Native framework) for the Arusha Technical College community. It provides the latest news, educational content, and notifications about important updates, all in a user-friendly interface.
+
+---
+
 ## ✨ Features
 
-- 📰 Latest news and announcements
-- 📚 Educational content and courses
-- 🔒 User authentication (Supabase)
-- 🛡️ Role-based access (admin features)
-- 👍 Likes, 👁️ Views, and 📊 Analytics
-- 🔔 Push notifications
-- 🎨 Modern UI/UX
-- 🔐 Privacy-focused: No personal data is collected or shared externally
-- 📱 Responsive and mobile-first design
-- 🚀 Fast and easy onboarding
-- 🧑‍💻 Open source and easy to contribute
+<ul>
+  <li><img src="https://lucide.dev/icon/newspaper.svg" width="20" alt="News"/> <b>Latest News & Announcements:</b> Stay updated with real-time news and important college announcements.</li>
+  <li><img src="https://lucide.dev/icon/book-open.svg" width="20" alt="Courses"/> <b>Educational Content & Courses:</b> Access a variety of learning materials, courses, and modules tailored for students.</li>
+  <li><img src="https://lucide.dev/icon/lock.svg" width="20" alt="Authentication"/> <b>User Authentication:</b> Secure login and registration powered by Supabase.</li>
+  <li><img src="https://lucide.dev/icon/shield.svg" width="20" alt="Admin"/> <b>Role-Based Access:</b> Admin dashboard for managing content, users, and analytics.</li>
+  <li><img src="https://lucide.dev/icon/thumbs-up.svg" width="20" alt="Likes"/> <b>Likes,</b> <img src="https://lucide.dev/icon/eye.svg" width="20" alt="Views"/> <b>Views, and</b> <img src="https://lucide.dev/icon/bar-chart-2.svg" width="20" alt="Analytics"/> <b>Analytics:</b> Track engagement with posts, courses, and news.</li>
+  <li><img src="https://lucide.dev/icon/bell.svg" width="20" alt="Notifications"/> <b>Push Notifications:</b> Get instant alerts for new content, updates, and reminders.</li>
+  <li><img src="https://lucide.dev/icon/note.svg" width="20" alt="Notes"/> <b>Note-Taking:</b> Take and save notes directly within the app for your courses and modules.</li>
+  <li><img src="https://lucide.dev/icon/folder.svg" width="20" alt="Categories"/> <b>Category Browsing:</b> Easily explore content by categories for a streamlined learning experience.</li>
+  <li><img src="https://lucide.dev/icon/file-text.svg" width="20" alt="PDF"/> <b>PDF Reader:</b> View and interact with PDF documents and course materials in-app.</li>
+  <li><img src="https://lucide.dev/icon/layout-dashboard.svg" width="20" alt="Dashboard"/> <b>Admin Dashboard:</b> Manage posts, courses, modules, and users with a dedicated admin interface.</li>
+  <li><img src="https://lucide.dev/icon/layout.svg" width="20" alt="UI/UX"/> <b>Modern UI/UX:</b> Clean, intuitive, and responsive design for a seamless user experience.</li>
+  <li><img src="https://lucide.dev/icon/shield-check.svg" width="20" alt="Privacy"/> <b>Privacy-Focused:</b> No personal data is collected or shared externally. All data is securely stored.</li>
+  <li><img src="https://lucide.dev/icon/rocket.svg" width="20" alt="Onboarding"/> <b>Fast Onboarding:</b> Quick and easy onboarding process for new users.</li>
+  <li><img src="https://lucide.dev/icon/moon.svg" width="20" alt="Dark Mode"/> <b>Dark Mode:</b> Enjoy a comfortable viewing experience with light and dark themes.</li>
+  <li><img src="https://lucide.dev/icon/smartphone.svg" width="20" alt="Mobile"/> <b>Mobile-First:</b> Optimized for Android and iOS devices.</li>
+  <li><img src="https://lucide.dev/icon/code.svg" width="20" alt="Open Source"/> <b>Open Source:</b> Easy to contribute and extend for new features.</li>
+</ul>
 
 ---
 
@@ -62,17 +77,14 @@
    # or
    npm install
    ```
-3. **Start the app:**
+3. **Start the app with Expo:**
    ```sh
-   yarn dev
-   # or
-   npm run dev
+   npx expo start
    ```
 4. **Run on Android/iOS:**
-   ```sh
-   yarn android
-   yarn ios
-   ```
+   - For Android: `npx expo run:android`
+   - For iOS: `npx expo run:ios`
+   - Or use the Expo Go app to scan the QR code from your terminal
 
 ---
 
@@ -151,4 +163,21 @@ SOFTWARE.
 - [Project Repository](https://github.com/raydanielg/atc-app)
 - [Expo Documentation](https://docs.expo.dev/)
 - [React Native Documentation](https://reactnative.dev/)
-- [Supabase Documentation](https://supabase.com/docs) 
+- [Supabase Documentation](https://supabase.com/docs)
+
+---
+
+## 🤝 How to Contribute
+
+We welcome contributions from everyone! Whether you want to fix a bug, add a feature, improve documentation, or suggest ideas, your input is valuable.
+
+**To contribute:**
+1. Fork this repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes and commit them with clear messages.
+4. Push your branch to your forked repo.
+5. Open a Pull Request describing your changes.
+
+Please read our guidelines in the [CONTRIBUTING.md](CONTRIBUTING.md) (or open an issue if you have questions or suggestions).
+
+If you are new to open source, check out [How to Contribute to Open Source on GitHub](https://opensource.guide/how-to-contribute/). 
