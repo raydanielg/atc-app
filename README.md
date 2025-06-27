@@ -1,35 +1,51 @@
-# ATC APP
+<p align="center">
+  <img src="./assets/images/ATC.png" alt="ATC APP Logo" width="120" />
+</p>
 
-Welcome to the **ATC APP** — a modern, mobile-friendly application designed for the Arusha Technical College community. This app was developed as a student project to demonstrate mobile development skills and is intended for educational and portfolio purposes only.
+<h1 align="center">ATC APP</h1>
+
+<p align="center">
+  <a href="https://github.com/raydanielg/atc-app/stargazers"><img src="https://img.shields.io/github/stars/raydanielg/atc-app?style=social" alt="Stars"></a>
+  <a href="https://github.com/raydanielg/atc-app/network/members"><img src="https://img.shields.io/github/forks/raydanielg/atc-app?style=social" alt="Forks"></a>
+  <a href="https://github.com/raydanielg/atc-app/issues"><img src="https://img.shields.io/github/issues/raydanielg/atc-app" alt="Issues"></a>
+  <a href="https://github.com/raydanielg/atc-app/blob/main/LICENSE"><img src="https://img.shields.io/github/license/raydanielg/atc-app" alt="License"></a>
+  <img src="https://img.shields.io/github/languages/top/raydanielg/atc-app" alt="Top Language">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=raydanielg.atc-app" alt="Viewers">
+</p>
 
 ---
 
 ## 📱 About the App
 
-**ATC APP** is your gateway to learning, news, and staying connected with the Arusha Technical College community. It provides the latest news, educational content, and notifications about important updates, all in a user-friendly interface.
+**ATC APP** is a modern, mobile-friendly application built with [Expo](https://expo.dev/) (a React Native framework) for the Arusha Technical College community. It provides the latest news, educational content, and notifications about important updates, all in a user-friendly interface.
 
 > **Note:** This is **NOT** an official app of Arusha Technical College. It is a student project developed for educational and demonstration purposes only.
 
 ---
 
 ## ✨ Features
-- Latest news and announcements
-- Educational content and courses
-- User authentication (Supabase)
-- Role-based access (admin features)
-- Likes, views, and analytics
-- Push notifications
-- Modern UI/UX
-- Privacy-focused: No personal data is collected or shared externally
+
+- 📰 Latest news and announcements
+- 📚 Educational content and courses
+- 🔒 User authentication (Supabase)
+- 🛡️ Role-based access (admin features)
+- 👍 Likes, 👁️ Views, and 📊 Analytics
+- 🔔 Push notifications
+- 🎨 Modern UI/UX
+- 🔐 Privacy-focused: No personal data is collected or shared externally
+- 📱 Responsive and mobile-first design
+- 🚀 Fast and easy onboarding
+- 🧑‍💻 Open source and easy to contribute
 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend:** React Native (Expo)
-- **Backend:** Supabase (authentication, database)
-- **Navigation:** Expo Router
-- **Notifications:** Expo Notifications
-- **Other:** Modern React Native libraries for UI and charts
+
+- **Frontend:** [React Native](https://reactnative.dev/) (with [Expo](https://expo.dev/))
+- **Backend:** [Supabase](https://supabase.com/) (authentication, database)
+- **Navigation:** [Expo Router](https://expo.github.io/router/)
+- **Notifications:** [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/)
+- **UI/UX:** Modern React Native libraries, custom icons ([Lucide](https://lucide.dev/)), and charts
 
 ---
 
@@ -37,8 +53,8 @@ Welcome to the **ATC APP** — a modern, mobile-friendly application designed fo
 
 1. **Clone the repository:**
    ```sh
-   git clone <your-repo-url>
-   cd <project-directory>
+   git clone https://github.com/raydanielg/atc-app.git
+   cd atc-app
    ```
 2. **Install dependencies:**
    ```sh
@@ -61,22 +77,42 @@ Welcome to the **ATC APP** — a modern, mobile-friendly application designed fo
 ---
 
 ## 📄 Privacy & Security
+
 - This app does **not** collect personal data or share information with third parties.
 - All data is stored securely and used only for educational purposes within Arusha Technical College.
 
 ---
 
 ## 👤 Author & Contact
-Developed by **Ray Daniel**, student at Arusha Technical College.
+
+Developed by [**Ray Daniel**](https://github.com/raydanielg), student at Arusha Technical College.
 
 - Phone: 📞 0613 976 254
-- GitHub: [Your GitHub Profile](#)
+- GitHub: [github.com/raydanielg/atc-app](https://github.com/raydanielg/atc-app)
 
 Open to freelance work, internships, and partnerships — especially in education, student platforms, or creative digital projects.
 
 ---
 
+## 🤝 Contributors
+
+Want to contribute? Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+<a href="https://github.com/raydanielg/atc-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=raydanielg/atc-app" />
+</a>
+
+---
+
+## ⭐️ Show Your Support
+
+If you like this project, please ⭐️ star the repo and share it with your friends and colleagues!
+
+---
+
 ## 📝 License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/raydanielg/atc-app/blob/main/LICENSE) file for details.
 
 ```
 MIT License
@@ -100,4 +136,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-``` 
+```
+
+---
+
+## 📸 Screenshots
+
+> _Add screenshots or GIFs of your app here to showcase its features and UI!_
+
+---
+
+## 🌐 Links
+
+- [Project Repository](https://github.com/raydanielg/atc-app)
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/)
+- [Supabase Documentation](https://supabase.com/docs) 
